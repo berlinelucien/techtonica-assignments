@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Recipe web app</title>
+  <!-- google font -->
+   <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  <!-- stylesheet -->
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <!-- Header container -->
+    <div class="header"> 
+      <h1> FIND YOUR FAVORITE RECIPES</h1> 
+    </div>
+    <!-- button section-->
+<div style="margin-left: 36%;"><button type="button" class="btn btn-info">Facebook</button>
+     <button type="button" class="btn btn-success">
+    Instagram</button>
+     <button type="button" class="btn btn-danger">
+    Pinterest</button>
+    </div>
+    <!--- CARD CONTAINER-->
+<div class="container">
+  <div class = "search-container">
+    <input 
+      type="text"
+      placeholder="Type A Dish Name Here.."
+      id="user-inp"
+      />
+    <button id="search-btn">Search</button>
+  </div>
+  <div id="result"></div>
+
+</div>
+
+
+    
+  <script src="script.js"></script>
+</body>
+
+</html>
