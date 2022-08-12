@@ -128,67 +128,54 @@
  <!-- end of projects -->
 
 
-    <div class = "project"> 
-    
-     <!-- form start-->
-
-  <section class="form">
-    <!--Section heading-->
-    <h2 >Contact me</h2>
-    <!--Section description-->
-    <div class="row">
-      <!--Grid column-->
-      <div>
+    <div class = "project">  
+      <!-- contact form -->
+   
+      <div class="form">
+        <div class="contactName">Contact Me</div>
         <form id="form">
-          <!--Grid row-->
-          <div class="row">
-            <!--Grid column-->
-            <div class="col-md-6">
-              <div class="md-form mb-0">
-                <input type="text" id="name" name="name" class="form-control">
-                <label for="name" class="">Your name</label>
-              </div>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-md-6">
-              <div class="md-form mb-0">
-                <input type="text" id="email" name="email" class="form-control">
-                <label for="email" class="">Your email</label>
-              </div>
-            </div>
+        <!-- Name input --> 
+          <div>
+            <label for="username">Name:</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              required
+              placeholder="Type your name" 
+            />
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="md-form mb-0">
-                <input type="text" id="subject" name="subject" class="form-control">
-                <label for="subject" class="">Subject</label>
-              </div>
-            </div>
+  
+ <!-- Email input --> 
+          <div>
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              placeholder="abc@gmail.com"
+              
+            />
           </div>
-          <!--Grid row-->
-
-          <!--Grid row-->
-          <div class="row">
-            <!--Grid column-->
-            <div class="col-md-12">
-              <div class="md-form">
-                <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" placeholder="Message here"></textarea>
-              </div>
-
-            </div>
+  
+<!--Message content -->
+          <div>
+            <label for="message">Message:</label>
+            <input
+              type="text"
+              name="message"
+              id="message"
+              required
+              placeholder="message"
+              
+            />
           </div>
-          <!--Grid row-->
+  <div class="submitButton">
+    <button type="submit" id="submit">Submit</button>
+  </div>      
         </form>
-        <div class="submitButton">
-            <button type="submit">Submit</a>
-        </div>
-        <div class="status"></div>
-      </div>
-      <!--Grid column-->
-    </div>
-  </section>
+      </div>   
 </div>
 
     <!--Fade content -->

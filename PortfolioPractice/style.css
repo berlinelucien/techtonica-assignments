@@ -336,6 +336,9 @@
   text-align: center;
   font-size: medium;
   }
+  .contactName{
+    font-size: x-large;
+  }
   .project:hover .project-info {
     opacity: 1;
     transform: translate(0);
