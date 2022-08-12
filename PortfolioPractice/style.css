@@ -314,7 +314,7 @@
     transform: translateY(10px);
     transition: all 0.4s;
   }
-  .needs-validation{
+  .form{
     position: absolute;
     z-index: 100;
     text-align: left;
@@ -335,6 +335,9 @@
   color: #fff;
   text-align: center;
   font-size: medium;
+  }
+  .contactName{
+    font-size: x-large;
   }
   .project:hover .project-info {
     opacity: 1;
