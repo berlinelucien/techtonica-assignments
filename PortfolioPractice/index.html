@@ -128,67 +128,38 @@
  <!-- end of projects -->
 
 
-    <div class = "project"> 
-    
-     <!-- form start-->
-
-  <section class="form">
-    <!--Section heading-->
-    <h2 >Contact me</h2>
-    <!--Section description-->
-    <div class="row">
-      <!--Grid column-->
-      <div>
-        <form id="form">
-          <!--Grid row-->
-          <div class="row">
-            <!--Grid column-->
-            <div class="col-md-6">
-              <div class="md-form mb-0">
-                <input type="text" id="name" name="name" class="form-control">
-                <label for="name" class="">Your name</label>
-              </div>
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-md-6">
-              <div class="md-form mb-0">
-                <input type="text" id="email" name="email" class="form-control">
-                <label for="email" class="">Your email</label>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="md-form mb-0">
-                <input type="text" id="subject" name="subject" class="form-control">
-                <label for="subject" class="">Subject</label>
-              </div>
-            </div>
-          </div>
-          <!--Grid row-->
-
-          <!--Grid row-->
-          <div class="row">
-            <!--Grid column-->
-            <div class="col-md-12">
-              <div class="md-form">
-                <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" placeholder="Message here"></textarea>
-              </div>
-
-            </div>
-          </div>
-          <!--Grid row-->
-        </form>
-        <div class="submitButton">
-            <button type="submit">Submit</a>
+    <div class = "project">  
+      <form class="row g-3 needs-validation" novalidate>
+        <div class="col-md-4"><h2>Contact Me</h2>
+          <label for="validationCustom01" class="form-label"></label>
+          <input type="text" class="form-control" id="validationCustom01" placeholder="First name" required>
+        
         </div>
-        <div class="status"></div>
-      </div>
-      <!--Grid column-->
-    </div>
-  </section>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label"></label>
+          <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" required>
+      
+        </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label"></label>
+          <input type="text" class="form-control" id="validationCustom02" placeholder="Message" required>
+        </div>
+      
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Agree to terms and conditions
+            </label>
+            <div class="invalid-feedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class=" submitButton" type="submit">Submit</button>
+        </div>
+      </form>
 </div>
 
     <!--Fade content -->

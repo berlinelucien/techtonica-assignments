@@ -314,7 +314,7 @@
     transform: translateY(10px);
     transition: all 0.4s;
   }
-  .form{
+  .needs-validation{
     position: absolute;
     z-index: 100;
     text-align: left;
