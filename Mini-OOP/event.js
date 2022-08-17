@@ -34,7 +34,7 @@
     for(let i=0; i< this.availableTickets.length; i++){
       if(this.availableTickets[i].price >= low && this.availableTickets[i].price <= high){
         count++;
-        this.message += `<li>${count}: ${this.availableTickets[i].name} ($${this.availableTickets[i].price})`;
+        this.message += `<li>${count}. ${this.availableTickets[i].name} ($${this.availableTickets[i].price})`;
       }
       else if(count === 0 && i === (this.availableTickets.length-1)){
         this.message = " No tickets available, please update amount"
@@ -78,9 +78,9 @@ console.log(eventArray); // (3) [Event, Event,Event]
 //console.log(eventArray[0]); // accessing first event --> Event {name: "KLOS Golden Gala", description: "An evening with hollywood vampires", availableTickets: Array(2)}
 
 // show all tickets for each events
-//GalaEvent.allTickets();
-// WarEvent.allTickets();
-// JennyMusicEvent.allTickets();
+GalaEvent.allTickets();
+WarEvent.allTickets();
+JennyMusicEvent.allTickets();
 
 GalaEvent.searchTickets(0,100);
 WarEvent.searchTickets(0,100);
