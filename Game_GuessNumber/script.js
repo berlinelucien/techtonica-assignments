@@ -8,6 +8,7 @@ let randomNumber = Math.floor(Math.random() * 100) + 1;
 const guesses = document.querySelector('.guesses'); 
 const lastResult = document.querySelector('.lastResult');
 const lowOrHi = document.querySelector('.lowOrHi');
+
 // DOM manipulating form label/form
 const guessSubmit = document.querySelector('.guessSubmit');
 const guessField = document.querySelector('.guessField');
@@ -30,6 +31,7 @@ function checkGuess() {
     // #1 test condition - if user guess is equal to the randomNumber
     // player guess correclt and the game is won
     // show player message = "Congrulations"
+
     if (userGuess === randomNumber) {
         lastResult.textContent = 'Congratulations! You got it right! 😊';
         lastResult.style.backgroundColor = 'green';
@@ -66,6 +68,7 @@ function checkGuess() {
   // we want to run when the event occurs
   guessSubmit.addEventListener('click',checkGuess);
 
+
 // first two lines form text input and button set = disabled properties = true
 // if we didnt the user could submit more guesses after the game is over
   function setGameOver() {
@@ -77,6 +80,7 @@ function checkGuess() {
     document.body.append(resetButton);
     resetButton.addEventListener('click',resetGame);
   }
+
  // reset the game back to 1 so the player can have another go
   function resetGame(){
     guessCount = 1;
