@@ -7,7 +7,7 @@ let randomNumber = Math.floor(Math.random() * 100) + 1;
 // DOM manipulating the p classes on html under div class=resultParas
 const guesses = document.querySelector('.guesses'); 
 const lastResult = document.querySelector('.lastResult');
-const low_or_Hi = document.querySelector('.low_or_Hi');
+const lowOrHi = document.querySelector('.lowOrHi');
 // DOM manipulating form label/form
 const guessSubmit = document.querySelector('.guessSubmit');
 const guessField = document.querySelector('.guessField');
@@ -31,7 +31,7 @@ function checkGuess() {
     // player guess correclt and the game is won
     // show player message = "Congrulations"
     if (userGuess === randomNumber) {
-        lastResult.textContent = 'Congratulations! You got it right!';
+        lastResult.textContent = 'Congratulations! You got it right! 😊';
         lastResult.style.backgroundColor = 'green';
         lowOrHi.textContent = '';
         setGameOver(); //end game if guessed right on first try
@@ -39,7 +39,7 @@ function checkGuess() {
     // #2nd test condition - if this is the user last turn
     // print out message game over
     } else if (guessCount === 10){
-        lastResult.textContent = '!!!GAME OVER!!! ';
+        lastResult.textContent = '!!!GAME OVER!!! 😵 ';
         lowOrHi.textContent = '';
         setGameOver();
 
@@ -49,9 +49,9 @@ function checkGuess() {
         lastResult.textContent = 'Wrong!';
         lastResult.getElementsByClassName.backgroundColor = 'red';
         if(userGuess < randomNumber){
-            lowOrHi.textContent = 'Last guess was too low!'
+            lowOrHi.textContent = 'Last guess was too low! 😟'
         } else if (userGuess > randomNumber){
-            lowOrHi.textContent = 'Last guess was too high!'
+            lowOrHi.textContent = 'Last guess was too high! 😟 '
         }
     }
 // increment guesses +1 so player can use their turn
