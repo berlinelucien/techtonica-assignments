@@ -28,6 +28,7 @@ function App() {
         <button onClick={decrement}>minus</button>
         <button onClick={reset}>reset</button>
       </div>
+      <div></div>
     </div>
   );
 }
