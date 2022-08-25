@@ -109,7 +109,7 @@ app.route('/invoices/:id').get((req, res) => {
     });
     res.status(status).send(response)
 })
-/** PUT  */
+/** PUT  update an entire specific resource in collection */
 // PUT in the /invoices/:id route
 .put((req, res) => {
     let invoice_id = req.params.id;
@@ -123,8 +123,6 @@ app.route('/invoices/:id').get((req, res) => {
     response = newInvoice;
     res.status(status).send(response);
 });
-
-
 
 
 
