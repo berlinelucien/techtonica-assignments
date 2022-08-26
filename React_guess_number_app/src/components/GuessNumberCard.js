@@ -42,7 +42,7 @@ const GuessNumberCard = () => {
   return (
     <div className="cardContainer">
       <Card sx={{ minWidth: 275 }}>
-        <CardContent>
+        <CardContent style={{ backgroundColor: "teal" }}>
           <Typography
             sx={{ fontSize: 14 }}
             color="text.secondary"
