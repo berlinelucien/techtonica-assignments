@@ -1,4 +1,4 @@
-const BOOKS = [{
+const books = [{
     "isbn": "0553120441",
     "title": "Harry Potter and the Sorcerer's Stone",
     "author": "J.K. Rowling",
@@ -66,4 +66,4 @@ const BOOKS = [{
 }
 ]
 
- export default BOOKS; 
+ export default books; 

@@ -36,18 +36,6 @@ app.get('/books', (req, resp) =>{
 
 })
 
-// create a new book into database
-app.post('/book', (req, res) => {
-    let newBook = req.body;
-    // Output the book to the console for debugging
-    console.log(book);
-    books.push(newBook);
-
-  
-    res.status(200).send(newBook);
-    res.send('Book is added to the database');
-});
-
 // GET method - retrieve by book ISBN
 // THIS WORKS!!!
 app.route('/books/:isbn').get((req, res) => {
@@ -60,4 +48,29 @@ app.route('/books/:isbn').get((req, res) => {
         }
     });
     res.status(status).send(response)
-})
+}); 
+
+// retrieve by book author name
+app.route('/books/:author').get((req, res) => {
+    let books_author = req.params.id;
+    let status = 400;
+    let response = 'Unable to fetch data!';
+    BOOKS.forEach((book) => {
+        if (books['author'] == books_author) {
+            res.status(200).send(book);
+        }
+    });
+    res.status(status).send(response)
+}); 
+
+// create a new book into database
+app.post('/books', (req, res) => {
+    let newBook = req.body;
+    // Output the book to the console for debugging
+    console.log(book);
+    books.push(newBook);
+
+  
+    res.status(200).send(newBook);
+    res.send('Book is added to the database');
+});
