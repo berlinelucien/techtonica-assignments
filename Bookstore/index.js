@@ -3,7 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import books from "./books.js";
 import path from 'path';
-import BOOKS from "./books.js";
+
 
 const app = express();
 const port = 3000;
@@ -26,7 +26,7 @@ app.use(express.static('client'));
 app.get('/', (req, resp) =>{
     // resp.send("Hello Techtonica this will be my first REST API");
     // open the index.html file that is in the client folder in your path
-    resp.sendFile(path.join(__dirname, 'client', 'index.html','new-book.html'));
+    resp.sendFile(path.join(__dirname, 'client', 'index.html'));
 })
 
 // /api/books
@@ -37,12 +37,14 @@ app.get('/books', (req, resp) =>{
 })
 
 // GET method - retrieve by book ISBN
+// do not change params.id to isbn it will not work
 // THIS WORKS!!!
-app.route('/books/:isbn').get((req, res) => {
+app.get('/books/:isbn',(req, res) => {
     let books_isbn = req.params.id;
     let status = 400;
     let response = 'Unable to fetch data!';
-    BOOKS.forEach((book) => {
+    books.forEach((book) => {
+        console.log(books_isbn);
         if (books['isbn'] == books_isbn) {
             res.status(200).send(book);
         }
@@ -51,26 +53,50 @@ app.route('/books/:isbn').get((req, res) => {
 }); 
 
 // retrieve by book author name
-app.route('/books/:author').get((req, res) => {
-    let books_author = req.params.id;
+app.get('/books/:author',(req, res) => {
+    let books_author = req.params['author'];
+    //console.log(req.params['author']);
     let status = 400;
     let response = 'Unable to fetch data!';
-    BOOKS.forEach((book) => {
-        if (books['author'] == books_author) {
-            res.status(200).send(book);
-        }
+    let booklist = [];
+    books.forEach((book) => {
+        if (book['author'] == books_author) {
+            console.log("‘************************’");
+            res.send(books['author']);
+            console.log("‘************************’");
+            booklist.push(book);  
+        }   
     });
-    res.status(status).send(response)
+    
+    res.status(200).send(booklist);
+    //res.status(status).send(response)
 }); 
 
 // create a new book into database
+// needs work
 app.post('/books', (req, res) => {
     let newBook = req.body;
     // Output the book to the console for debugging
-    console.log(book);
+    console.log(books);
     books.push(newBook);
 
   
-    res.status(200).send(newBook);
+    res.status(200).send(books);
     res.send('Book is added to the database');
+});
+
+app.delete('/books/:isbn', (req, res) => {
+    // reading the isbn from the URL
+    let books_isbn = req.params.id;
+    let status = 400;
+    let response = 'Unable to fetch data!';
+    let newBooks = books.filter((book) => {
+        if (books['isbn'] == books_isbn) {
+            return books
+            //res.status(200).send(book);
+        }
+    })
+    status = 200;
+    response = newBooks;
+    res.status(status).send('book is deleted');
 });
