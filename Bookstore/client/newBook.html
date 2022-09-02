@@ -1,0 +1,33 @@
+
+    <!-- CREATE BOOK FORM -->
+    <div class="container">
+        <hr>
+        <h1>Create New Book</h1>
+        <hr>
+        
+                <div class="modal-header">
+        <form action="http://localhost:8080/api/books" method="POST" onsubmit="location.reload()">
+            <div class="form-group">
+                <label for="ISBN">ISBN: </label>
+                <input class="form-control" name="isbn">
+            </div>
+    
+            <div class="form-group">
+                <label for="Title">Title: </label>
+                <input class="form-control" name="title">
+            </div>
+            <div class="form-group">
+                <label for="Title">Author: </label>
+                <input class="form-control" name="title">
+            </div>
+            <div class="form-group">
+                <label for="Title">Format: </label>
+                <input class="form-control" name="title">
+            </div>
+    
+    
+            <!--Other fields-->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

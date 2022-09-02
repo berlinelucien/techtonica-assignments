@@ -1,10 +1,9 @@
-import { Alert } from "bootstrap";
-import books from "../books";
+
 
 
 async function showBooks() {
 
-    const URL = 'http://localhost:3000/books/';
+    const URL = 'http://localhost:8080/api/books';
     const response = await fetch(URL);
     const responseBooks = await response.json();
     console.log(responseBooks); 
@@ -33,15 +32,38 @@ async function showBooks() {
     }
     
 }
+
 showBooks();
 
 
 async function deleteBook(isbn){
     // console.log(isbn)
-    const URL = "http://localhost:3000/books/"
+    const URL = "http://localhost:8080/api/books/"
     const response = await fetch(URL + "/" + isbn, {method: 'DELETE'});
     // console.log(response)
     location.reload()
     alert("book deleted")
+}
+
+
+async function editBook(isbn){
+    const URL = "http://localhost:8080/api/books/"
+    const response = await fetch(URL + "/" + isbn, {method: 'GET'});
+    const book = await response.json();
+    console.log(book)
+    const {
+        author,
+        format,
+        title
+    } = book;
+
+    // Filling information about the book in the form inside the modal
+    document.getElementById('isbn').value = isbn;
+    document.getElementById('title').value = title;
+    document.getElementById('author').value = author;
+    document.getElementById('format').value = format;
+
+    // Setting up the action url for the book
+    document.getElementById('editForm').action = `http://localhost:8080/api/books/${isbn}`;
 
 }
