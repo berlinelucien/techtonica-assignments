@@ -67,3 +67,26 @@ async function editBook(isbn){
     document.getElementById('editForm').action = `http://localhost:8080/api/books/${isbn}`;
 
 }
+
+
+// async function addBook(){
+//     const URL = "http://localhost:8080/api/books/"
+//     const response = await fetch(URL + "/" + isbn, {method: 'GET'});
+//     const book = await response.json();
+//     console.log(book)
+//     const {
+//         author,
+//         format,
+//         title
+//     } = book;
+
+//     // Filling information about the book in the form inside the modal
+//     document.getElementById('isbn').value = isbn;
+//     document.getElementById('title').value = title;
+//     document.getElementById('author').value = author;
+//     document.getElementById('format').value = format;
+
+//     // Setting up the action url for the book
+//     document.getElementById('addForm').action = `http://localhost:8080/api/books/${isbn}`;
+
+// }
