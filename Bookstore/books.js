@@ -6,26 +6,26 @@ const books = [{
 },
 {
     "isbn": "0679889175",
-    "title": "Harry Potter and the Chamber of Secrets",
-    "author": "J.K. Rowling",
-    "format": "e-book"
+    "title": "Recursion",
+    "author": "Blake Crouch",
+    "format": "Paperback"
 },
 {
     "isbn": "9780857660282",
-    "title": "Harry Potter and the Prisoner of Azkaban",
-    "author": "J.K. Rowling",
-    "format": "e-book"
+    "title": "It Can't Happen Here",
+    "author": "Sinclair Lewis",
+    "format": "Paperback"
 },
 {
     "isbn": "0553096095",
-    "title": "Harry Potter and the Goblet of Fire",
-    "author": "J.K. Rowling",
+    "title": "The Book Thief",
+    "author": "Zusak",
     "format": "Hardcover"
 },
 {
     "isbn": "05530962356",
-    "title": "Harry Potter and the Order of the Phoenix",
-    "author": "J.K. Rowling",
+    "title": "Scythe",
+    "author": "Neal Shusterman",
     "format": "Hardcover"
 },
 {

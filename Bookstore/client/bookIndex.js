@@ -1,6 +1,9 @@
+import { Alert } from "bootstrap";
+import books from "../books";
 
 
-async function showBooks(){
+async function showBooks() {
+
     const URL = 'http://localhost:3000/books/';
     const response = await fetch(URL);
     const responseBooks = await response.json();
@@ -17,7 +20,6 @@ async function showBooks(){
                     <div>Format: ${book.format}</div>
 
                     <hr>
-
                     <button type="button" class="btn btn-danger" onClick="deleteBook(${book.isbn})">Delete</button>
                     <button types="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#editBookModal" onClick="setEditModal(${book.isbn})">
@@ -29,10 +31,17 @@ async function showBooks(){
     `
         document.getElementById("books").innerHTML = document.getElementById("books").innerHTML + card;
     }
+    
 }
-
 showBooks();
 
-function deleteBook (){
-    alert("delete")
+
+async function deleteBook(isbn){
+    // console.log(isbn)
+    const URL = "http://localhost:3000/books/"
+    const response = await fetch(URL + "/" + isbn, {method: 'DELETE'});
+    // console.log(response)
+    location.reload()
+    alert("book deleted")
+
 }
