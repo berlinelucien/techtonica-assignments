@@ -39,9 +39,9 @@ router.get("/", (req, res) => {
       // Output the book to the console for debugging
       console.log(books);
       books.push(book);
-  console.log(books)
+    console.log(books)
       res.status(200).send(books);
-      res.send("Book is added to the database");
+     // res.send("Book is added to the database");
   })
   
 router.delete("/", (req, res) => {

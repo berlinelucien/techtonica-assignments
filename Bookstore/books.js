@@ -1,7 +1,7 @@
 const books = [{
     "isbn": "0553120441",
-    "title": "Harry Potter and the Sorcerer's Stone",
-    "author": "J.K. Rowling",
+    "title": "Invisible Man",
+    "author": "Ellison",
     "format": "Paperback"
 },
 {
@@ -30,8 +30,8 @@ const books = [{
 },
 {
     "isbn": "0553098976",
-    "title": "Harry Potter and the Half-Blood Prince",
-    "author": "J.K. Rowling",
+    "title": "IT",
+    "author": "Stephen King",
     "format": "Hardcover"
 },
 {
@@ -42,27 +42,27 @@ const books = [{
 },
 {
     "isbn": "0553115634",
-    "title": "A Court of Thorns and Roses",
-    "author": "Sarah J. Maas",
+    "title": "Annihilation",
+    "author": "Jeff VanderMeer",
     "format": "Hardcover"
 },
 {
     "isbn": "0553115765",
-    "title": "A Court of Mist and Fury",
-    "author": "Sarah J. Maas",
+    "title": "The Alchemist",
+    "author": "Paulo Coelio",
     "format": "Hardcover"
 },
 {
     "isbn": "05531324567",
-    "title": "A Court of Wings and Ruin",
-    "author": "Sarah J. Maas",
+    "title": "The Underground RailRoad",
+    "author": "Colson Whitehead",
     "format": "Hardcover"
 },
 {
     "isbn": "05531324511",
-    "title": "A Court of Silver Flames",
-    "author": "Sarah J. Maas",
-    "format": "Hardcover"
+    "title": "I Am Legend",
+    "author": "Richard Mathes",
+    "format": "Paperback"
 }
 ]
 
