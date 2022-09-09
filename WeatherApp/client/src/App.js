@@ -6,7 +6,7 @@ export default function App() {
   //We get our latitude and longitude using navigator.geolocation and we use setLong and setLat to set our longitude and latitude states.
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   // create the useEffect function. Its goal is to load the functions when the application is loaded and reloaded.
   useEffect(() => {
@@ -17,12 +17,12 @@ export default function App() {
       });
       // fetch the data from the weather
       // use setData to store our result into the data object.
-      // await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key}`)
-      await fetch("/weather")
+      //  await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99=${process.env.API_KEY}`)
+      await fetch("http://localhost:8080/weather")
         .then((res) => res.json())
-        .then((result) => {
-          setData(result);
-          console.log(result);
+        .then((results) => {
+          setData(results);
+          console.log(results);
         });
     };
     fetchData();
@@ -31,7 +31,7 @@ export default function App() {
   return (
     <div className="App">
       {/* call weather app component */}
-      {typeof data.main != "undefined" ? (
+      {data != null ? (
         <Weather weatherData={data} />
       ) : (
         <div></div>
