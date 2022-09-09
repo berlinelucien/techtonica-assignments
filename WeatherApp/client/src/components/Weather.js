@@ -6,7 +6,11 @@ import moment from "moment";
 const Weather = ({ weatherData }) => (
   <div className="card">
   <div className="main">
-      <p className="header">{weatherData.name}</p>
+      <p className="header">{weatherData.name}
+      <img className="icon" src={"http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png"} />
+      </p>
+    
+    
       <div className="flex">
         <p className="day">{moment().format('dddd')}, <span>{moment().format('LL')}</span></p>
         <p className="description">{weatherData.weather[0].main}</p>

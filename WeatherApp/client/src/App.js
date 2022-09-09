@@ -30,6 +30,8 @@ export default function App() {
     fetchData();
   }, [lat, long]);
 
+
+
   return (
     <div className="App">
       {/* call weather app component */}
