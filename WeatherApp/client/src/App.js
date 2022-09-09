@@ -1,6 +1,8 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import Weather from "./components/Weather.js";
+import vecteezy from "./videos/vecteezy.mp4";
+//import Welcome from "./components/Welcome";
 
 export default function App() {
   //We get our latitude and longitude using navigator.geolocation and we use setLong and setLat to set our longitude and latitude states.
@@ -31,11 +33,26 @@ export default function App() {
   return (
     <div className="App">
       {/* call weather app component */}
-      {data != null ? (
-        <Weather weatherData={data} />
-      ) : (
-        <div></div>
-      )}
+      <video
+        autoPlay
+        loop
+        muted
+        controls
+        style={{
+          position: "absolute",
+          width: "100%",
+          left: "50%",
+          top: "50%",
+          height: "100%",
+          objectFit: "cover",
+          transform: "translate(-50%, -50%)",
+          zIndex: "-1",
+        }}
+      >
+        <source src={vecteezy} type="video/mp4" />
+      </video>
+      {data != null ? <Weather weatherData={data} /> : <div></div>}
+      <div></div>
     </div>
   );
 }

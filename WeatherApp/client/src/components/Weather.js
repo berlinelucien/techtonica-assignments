@@ -4,6 +4,7 @@ import moment from "moment";
 
 
 const Weather = ({ weatherData }) => (
+  <div className="card">
   <div className="main">
       <p className="header">{weatherData.name}</p>
       <div className="flex">
@@ -21,7 +22,8 @@ const Weather = ({ weatherData }) => (
         <p className="sunrise-sunset">Sunset: {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString('en-IN')}</p>
       </div>
     
-  </div>
+    </div>
+    </div>
 );
 
 export default Weather;
