@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap');
 .card{
     padding: 220px;
-    margin-left: 160px
+    margin-left: 160px;
 }
 .main{
-    width: 900px;
+    width: 1080px;
     border-radius: 20px;
-    background-color: #07a7a7;
+    background-color: #3bc1c1;
 }
 
 .header{
-    background-color: #525151;
+    background-color: #aaa3a3;
     color: whitesmoke;
     padding: 10px;
     font-size: 48px;
