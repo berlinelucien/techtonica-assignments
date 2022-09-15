@@ -1,11 +1,14 @@
-import { CircularProgress } from "@material-ui/core";
+//import { CircularProgress } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import Question from "../../components/Question";
+import Header from "../Home/Header";
+import Result from "../Result/Result";
 import "./Quiz.css";
 
 const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
   const [options, setOptions] = useState();
   const [currQues, setCurrQues] = useState(0);
+  //const [endGame, setEndGame] = useState()
 
   useEffect(() => {
     setOptions(
@@ -18,14 +21,20 @@ const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
   }, [currQues, questions]);
 
   console.log(questions);
-
+  //   const showResult = (questions) => {
+  //     if (questions.length === 10) {
+  //       setEndGame("End Game");
+  //   }
+  // }
   const handleShuffle = (options) => {
     return options.sort(() => Math.random() - 0.5);
   };
 
   return (
     <div className="quiz">
-      <span className="subtitle">Welcome, {name}</span>
+      <span className="subtitle">
+        <Header name={name} />{" "}
+      </span>
 
       {questions ? (
         <>
@@ -48,12 +57,13 @@ const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
           />
         </>
       ) : (
-        <CircularProgress
-          style={{ margin: 100 }}
-          color="inherit"
-          size={150}
-          thickness={1}
-        />
+        //   <CircularProgress
+        //   style={{ margin: 100 }}
+        //   color="inherit"
+        //   size={150}
+        //   thickness={1}
+        // />
+        <Result name={name} score={score} />
       )}
     </div>
   );

@@ -1,18 +1,26 @@
 import { Button, MenuItem, TextField } from "@material-ui/core";
 import { useState } from "react";
+import { Redirect } from "react-router";
 import { useHistory } from "react-router";
 import ErrorMessage from "../../components/ErrorMessage";
 import Categories from "../../Data/Categories";
 import "./Home.css";
 
-const Home = ({ name, setName, fetchQuestions }) => {
+const Home = ({ name, setName, fetchQuestions, grabUser }) => {
   const [category, setCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [error, setError] = useState(false);
+  const [value, setValue] = useState("");
 
   const history = useHistory();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!value) return;
+    grabUser(value);
+    console.log(value);
+    setValue("");
+
     if (!category || !difficulty || !name) {
       setError(true);
       return;
@@ -33,6 +41,8 @@ const Home = ({ name, setName, fetchQuestions }) => {
             style={{ marginBottom: 25 }}
             label="Enter Your Name"
             variant="outlined"
+            name={name}
+            setName={setName}
             onChange={(e) => setName(e.target.value)}
           />
           <TextField
@@ -67,6 +77,7 @@ const Home = ({ name, setName, fetchQuestions }) => {
               Hard
             </MenuItem>
           </TextField>
+          <Redirect to="/quiz" />
           <Button
             variant="contained"
             color="primary"

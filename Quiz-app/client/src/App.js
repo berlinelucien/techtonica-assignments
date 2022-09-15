@@ -1,7 +1,6 @@
-import './App.css';
-//import axios from 'axios';
 import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./App.css";
 import Home from "./Pages/Home/Home";
 import Quiz from "./Pages/Quiz/Quiz";
 import Result from "./Pages/Result/Result";
@@ -12,25 +11,26 @@ function App() {
   const [score, setScore] = useState(0);
 
   const fetchQuestions = () => {
-    fetch('http://localhost:8080/game')
+    fetch("http://localhost:8080/quiz")
       .then((response) => response.json())
-      .then(data => {
+      .then((data) => {
         console.log("This is line 11", data.results);
         setQuestions(data.results);
-      })
-  }
-useEffect(() => {
-  fetchQuestions();
-}, [])
-
+      });
+      
+  };
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
+ 
 
   return (
     <BrowserRouter>
       <div className="app" style={{ backgroundImage: 'url("/ques1.png")' }}>
    
-        <Switch>
+      <Switch>
           <Route path="/" exact>
-            <Home
+          <Home
               name={name}
               setName={setName}
               fetchQuestions={fetchQuestions}
@@ -50,7 +50,6 @@ useEffect(() => {
           </Route>
         </Switch>
       </div>
-  
     </BrowserRouter>
   );
 }
