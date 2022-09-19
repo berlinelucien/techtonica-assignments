@@ -1,33 +1,55 @@
 import React from "react";
 import { useState } from "react";
+import DeleteUser from "./DeleteUser";
 
-//harcode data
+//harcode data example
 const marlin = { name: "Marlin", email: "marlin@gmail.com", id: "1" };
 const nemo = { name: "Nemo", email: "nemo@gmail.com", id: "2" };
 const dory = { name: "Dory", email: "dory@gmail.com", id: "3" };
 
 const Users = () => {
+  //stores the harcode data
   const [users, setUsers] = useState([marlin, nemo, dory]);
   // Every time the user types a name in the name field, the name state is updated
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
+  // const [name, setName] = useState("");
+  const [newUser, setNewUser] = useState({ id: "", name: "", email: "" });
 
-  //functionality to handle the add new users
+  //handle the change and set each value in newUser
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newUser = { id: "id", name: "name", email: "email" };
     setUsers([...users, newUser]);
+    //reset form to blank setNewUser
+    setNewUser({ id: "", name: "", email: "" });
   };
+  // when the form is submitted, get user information
+  const set = (name) => {
+    return ({ target: { value } }) => {
+      setNewUser((originalValues) => ({
+        ...originalValues,
+        [name]: value,
+      }));
+    };
+  };
+     // callback function deleteUser gets sent to DeleteUser file
+    //delete function takes id as a parameter
+    const deleteUser = (deleteId) => {
+        //iterate thru users, if the id does not match the specific id
+        const newUsers = users.filter((user) => user.id !== deleteId);
+        setUsers(newUsers)
+    };
 
   return (
     <section className="user-management">
       <h2>User Management</h2>
 
       <ul id="users-list">
-        {/* display all existing Users here */}
+        {/* display all existing Users here 
+        to access the data you need to do a dot notation */}
         {users.map((users, index) => {
           return (
             <li key={index}>
-              Name: {users.name}, Email: {users.email}
+              Name: {users.name}, Email: {users.email}, ID: {users.id}
             </li>
           );
         })}
@@ -35,31 +57,35 @@ const Users = () => {
 
       <div>
         <h3>Add User</h3>
-        <form id="add-user" action="#">
+        <form id="add-user" onSubmit={handleSubmit} action="#">
           <fieldset>
-            <label>Name</label>
+            <label>Name: </label>
             <input
               type="text"
               id="add-user-name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={newUser.name} // changes the name
+              onChange={set("name")} //handle the change function
+            />
+            <label>Email: </label>
+            <input
+              type="text"
+              id="add-user-email"
+              value={newUser.email}
+              onChange={set("email")}
+            />
+            <label>ID:</label>
+            <input
+              type="text"
+              id="add-user-id"
+              value={newUser.id}
+              onChange={set("id")}
             />
           </fieldset>
           {/* Add more form fields here */}
           <input type="submit" value="Add" />
         </form>
       </div>
-
-      <div>
-        <h3>Delete User</h3>
-        <form id="delete-user" action="#">
-          <fieldset>
-            <label>User ID</label>
-            <input type="text" id="delete-user-id" />
-          </fieldset>
-          <input type="submit" />
-        </form>
-      </div>
+      <DeleteUser deleteUser={deleteUser} />
     </section>
   );
 };
