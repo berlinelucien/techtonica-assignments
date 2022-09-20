@@ -1,5 +1,8 @@
 import { useReducer } from "react";
 
+// another hook called useReducer which is better for more complex state management.
+// Reducer A function that accepts the current state and action. It returns the new state.
+
 function AddNewEvent({ handleAddEvent }) {
      // Create an initial state for the form reducer. This will be an object with keys for each field in the form. The values will be updates as the user fills out the form.
   const initialState = {
@@ -9,6 +12,7 @@ function AddNewEvent({ handleAddEvent }) {
     description: "",
     category: ""
   };
+
 
   const reducer = (state, action) => {
     console.log(action, "this is the action");
@@ -33,8 +37,8 @@ function AddNewEvent({ handleAddEvent }) {
         return state;
     }
   };
-// initialize reducer that will store and update the form data
-  const [state, dispatch] = useReducer(reducer, initialState);
+// initialize at the end of reducer that will store and update the form data
+const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div>

@@ -1,15 +1,15 @@
 import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import React from 'react';
 import Users from "./components/Users";
 import Event from "./components/Event";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 
 function App() {
-  
   return (
     <div className="App">
-      {/** header component here */}
+          {/** header component here */}
       <Header />
       <main>
         <div className="user-and-events">
