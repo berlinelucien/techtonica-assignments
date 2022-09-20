@@ -1,16 +1,16 @@
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Users from './components/Users';
-import Event from './components/Event';
-
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Users from "./components/Users";
+import Event from "./components/Event";
 
 
 function App() {
+  
   return (
     <div className="App">
-       {/** header component here */}
-     <Header />
+      {/** header component here */}
+      <Header />
       <main>
         <div className="user-and-events">
           {/**users and event component here */}
@@ -19,36 +19,11 @@ function App() {
         </div>
 
         <div>
-          <h3>Delete Event</h3>
-          <form id="delete-event" action="#">
-            <fieldset>
-              <label>Event ID</label>
-              <input type="number" min="1" id="delete-event-id" />
-            </fieldset>
-            <input type="submit" />
-          </form>
+          {/**Delete event here */}
         </div>
 
-        <aside className="search-toolbar">
-          <div>
-            <h3>Find Events</h3>
-            <form id="search" action="#">
-              <fieldset>
-                <label htmlFor="date-search">Date</label>
-                <input type="text" id="date-search" placeholder="YYYY-MM-DD" />
-              </fieldset>
-              <fieldset>
-                <label htmlFor="category-search">Category</label>
-                <input type="text" id="category-search" />
-              </fieldset>
-
-              <input type="submit" value="Search" />
-            </form>
-          </div>
-        </aside>
       </main>
-<Footer />
-     
+      <Footer />
     </div>
   );
 }

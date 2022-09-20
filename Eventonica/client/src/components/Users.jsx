@@ -31,34 +31,70 @@ const Users = () => {
       }));
     };
   };
-     // callback function deleteUser gets sent to DeleteUser file
-    //delete function takes id as a parameter
-    const deleteUser = (deleteId) => {
-        //iterate thru users, if the id does not match the specific id
-        const newUsers = users.filter((user) => user.id !== deleteId);
-        setUsers(newUsers)
-    };
+  // callback function deleteUser gets sent to DeleteUser file
+  //delete function takes id as a parameter
+  const deleteUser = (deleteId) => {
+    //iterate thru users, if the id does not match the specific id
+    const newUsers = users.filter((user) => user.id !== deleteId);
+    setUsers(newUsers);
+  };
 
   return (
     <section className="user-management">
       <h2>User Management</h2>
 
       <ul id="users-list">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#:</th>
+              <th scope="col">Name:</th>
+              <th scope="col">Email:</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* {users.map((users, index) => {
+              return (
+                <tr key={index}>
+                  <td>{newUser.name}</td>
+                  <td>{users.email}</td>
+                  <td> {users.id}</td>
+                </tr>
+              );
+            })} */}
+            {users.map((users, index) => {
+              return (
+                <tr key={index}>
+                  <th scope="row">{users.id}</th>
+                  <td>{users.name}</td>
+                  <td>{users.email}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
         {/* display all existing Users here 
         to access the data you need to do a dot notation */}
-        {users.map((users, index) => {
+        {/* {users.map((users, index) => {
           return (
             <li key={index}>
               Name: {users.name}, Email: {users.email}, ID: {users.id}
             </li>
           );
-        })}
+        })} */}
       </ul>
 
       <div>
         <h3>Add User</h3>
         <form id="add-user" onSubmit={handleSubmit} action="#">
           <fieldset>
+          <label>ID:</label>
+            <input
+              type="text"
+              id="add-user-id"
+              value={newUser.id}
+              onChange={set("id")}
+            />
             <label>Name: </label>
             <input
               type="text"
@@ -73,13 +109,7 @@ const Users = () => {
               value={newUser.email}
               onChange={set("email")}
             />
-            <label>ID:</label>
-            <input
-              type="text"
-              id="add-user-id"
-              value={newUser.id}
-              onChange={set("id")}
-            />
+            
           </fieldset>
           {/* Add more form fields here */}
           <input type="submit" value="Add" />

@@ -24,7 +24,7 @@ const DeleteUser = ({ deleteUser }) => {
             onChange={(e) => setId(e.target.value)}
           />
         </fieldset>
-        <input type="submit" />
+        <input type="submit" value="Delete"/>
       </form>
     </div>
   );
