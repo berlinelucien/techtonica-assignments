@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import DeleteUser from "./DeleteUser";
+//import DeleteUser from "./DeleteUser";
+import { MdDelete } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
 
 const Users = () => {
   //stores the harcode data
@@ -58,88 +60,105 @@ const Users = () => {
   };
 
   /** DELETE USER */
-  // callback function deleteUser gets sent to DeleteUser file
-  //delete function takes id as a parameter
-  const deleteUser = async (deleteId) => {
+  const handleDeleteUser = async (deleteUser) => {
+    // Simple DELETE HTTP request with async await
     let response = await fetch(`http://localhost:4000/users/${deleteUser}`, {
       method: "DELETE",
     });
     await response.json();
-    // functionality to delete below
-    //iterate thru users, if the id does not match the specific id
-    const newUser = users.filter((user) => user.id !== deleteId);
-    console.log(deleteUser);
-    setUsers(newUser);
+    // delete functionality
+    const deleteUsers = users.filter((user) => user.id !== deleteUser);
+    console.log(deleteUsers);
+    setUsers(deleteUsers);
   };
+  // callback function deleteUser gets sent to DeleteUser file
+  //delete function takes id as a parameter
+  // const deleteUser = async (deleteId) => {
+  //   let response = await fetch(`http://localhost:4000/users/${deleteUser}`, {
+  //     method: "DELETE",
+  //   });
+  //   await response.json();
+  //   // functionality to delete below
+  //   //iterate thru users, if the id does not match the specific id
+  //   const newUser = users.filter((user) => user.id !== deleteId);
+  //   console.log(deleteUser);
+  //   setUsers(newUser);
+  // };
 
   return (
     <section className="user-management">
       <h2>User Management</h2>
+      <div className="container">
+        <ul id="users-list">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#:</th>
+                <th scope="col">Name:</th>
+                <th scope="col">Email:</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, index) => {
+                return (
+                  <tr key={index}>
+                    <th scope="row">{user.id}</th>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <MdDelete onClick={() => handleDeleteUser(user.id)} />
 
-      <ul id="users-list">
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#:</th>
-              <th scope="col">Name:</th>
-              <th scope="col">Email:</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            {users.map((users, index) => {
-              return (
-                <tr key={index}>
-                  <th scope="row">{users.id}</th>
-                  <td>{users.name}</td>
-                  <td>{users.email}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        {/* display all existing Users here 
+                      <FaRegEdit />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {/* display all existing Users here 
         to access the data you need to do a dot notation */}
-        {/* {users.map((users, index) => {
+          {/* {users.map((users, index) => {
           return (
             <li key={index}>
               Name: {users.name}, Email: {users.email}, ID: {users.id}
             </li>
           );
         })} */}
-      </ul>
+        </ul>
 
-      <div>
-        <h3>Add User</h3>
-        <form id="add-user" onSubmit={handleAddUser} action="#">
-          <fieldset>
-            <label>ID:</label>
-            <input
-              type="text"
-              id="add-user-id"
-              value={id}
-              onChange={set("id")}
-            />
-            <label>Name: </label>
-            <input
-              type="text"
-              id="add-user-name"
-              value={name} // changes the name
-              onChange={set("name")} //handle the change function
-            />
-            <label>Email: </label>
-            <input
-              type="text"
-              id="add-user-email"
-              value={email}
-              onChange={set("email")}
-            />
-          </fieldset>
-          {/* Add more form fields here */}
-          <input type="submit" value="Add" />
-        </form>
+        <div>
+          <h3>Add User</h3>
+          <form id="add-user" onSubmit={handleAddUser} action="POST">
+            <fieldset>
+              <label>ID:</label>
+              <input
+                type="text"
+                id="add-user-id"
+                value={id}
+                onChange={set("id")}
+              />
+              <label>Name: </label>
+              <input
+                type="text"
+                id="add-user-name"
+                value={name} // changes the name
+                onChange={set("name")} //handle the change function
+              />
+              <label>Email: </label>
+              <input
+                type="text"
+                id="add-user-email"
+                value={email}
+                onChange={set("email")}
+              />
+            </fieldset>
+            {/* Add more form fields here */}
+            <input type="submit" value="Add" />
+          </form>
+        </div>
       </div>
-      <DeleteUser deleteUser={deleteUser} />
+      {/* <DeleteUser deleteUser={deleteUser} /> */}
     </section>
   );
 };

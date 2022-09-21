@@ -28,3 +28,9 @@ footer {
   font-size: small;
   color: gray;
 }
+
+
+navBar-ul li {
+  display: inline-block;
+  
+}
