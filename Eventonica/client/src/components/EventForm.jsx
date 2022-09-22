@@ -9,6 +9,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 
+
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const EventForm = () => {
@@ -24,10 +25,10 @@ const EventForm = () => {
   //const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   // connect backend to frontend
   // fetch all events
-  const getEvents = () => {
-    fetch("http://localhost:4000/events")
-      .then((res) => res.json())
-      .then((res) => setEvents(events));
+  const getEvents = async () => {
+    const response = await fetch("http://localhost:4000/events");
+    const event = await response.json();
+    setEvents(event);
   };
   useEffect(() => {
     // useEffect will run getEvents() 
@@ -81,14 +82,17 @@ const EventForm = () => {
                 {events.map((event, index) => {
                   return (
                     <tr key={index}>
-                      <th scope="row">{event.id}</th>
-                      <td>{event.name}</td>
-                      <td>{event.date}</td>
-                      <td>{event.description}</td>
-                      <td>{event.category}</td>
+                      <th scope="row">{event?.id}</th>
+                      <td>{event?.name}</td>
+                      <td>{event?.date}</td>
+                      <td>{event?.description}</td>
+                      <td>{event?.category}</td>
                       <td>
                         <MdDelete onClick={() => deleteEvent(event.id)} />
-                        <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+                        <Checkbox {...label}
+                          color="secondary"
+                          icon={<FavoriteBorder />}
+                          checkedIcon={<Favorite />} />
                       </td>
                     </tr>
                   );

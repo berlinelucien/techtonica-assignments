@@ -113,10 +113,10 @@ const Users = () => {
         </label>
       </div>
       <div className="container">
-        <div className="usersList">
+        <div className="userList">
           <ul id="users-list">
-            <table className="table table-striped">
-              <thead>
+            <table className="table table-hover border">
+              <thead className="thead-light">
                 <tr>
                   <th scope="col">#UserID:</th>
                   <th scope="col">Name:</th>
@@ -131,7 +131,7 @@ const Users = () => {
                       <th scope="row">{user.id}</th>
                       <td>{user.name}</td>
                       <td>{user.email}</td>
-                      <td></td>
+            
                       <td>
                         <MdDelete onClick={() => handleDeleteUser(user.id)} />
 
