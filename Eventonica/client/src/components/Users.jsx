@@ -1,6 +1,6 @@
 import React from "react";
+import Header from "./Header";
 import { useEffect, useState } from "react";
-//import DeleteUser from "./DeleteUser";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
@@ -8,10 +8,11 @@ const Users = () => {
   //stores the harcode data
   //const [users, setUsers] = useState([marlin, nemo, dory]);
   // Every time the user types a name in the name field, the name state is updated
+  const [users, setUsers] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
-  const [users, setUsers] = useState([]);
+ 
 
   console.log("users", users);
   // connect backend to frontend
@@ -29,11 +30,11 @@ const Users = () => {
 
   /** ADD USER */
   //handle the change and set each value in newUser
-  const handleAddUser = (e) => {
+  const handleAddUser = async (e) => {
     e.preventDefault();
-    const newUser = { id: id, name: name, email: email };
+    const newUser = { id, name, email };
     //console.log(newUser)
-    const rawResponse = fetch("http://localhost:4000/users", {
+    const response = await fetch("http://localhost:4000/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -41,23 +42,14 @@ const Users = () => {
       },
       body: JSON.stringify(newUser),
     });
-    const content = rawResponse.json();
+    const content = await response.json();
 
     setUsers([...users, content]);
     setName("");
     setEmail("");
-    setId("");
   };
+ 
 
-  // when the form is submitted, get user information
-  const set = (name) => {
-    return ({ target: { value } }) => {
-      setUsers((originalValues) => ({
-        ...originalValues,
-        [name]: value,
-      }));
-    };
-  };
 
   /** DELETE USER */
   const handleDeleteUser = async (deleteUser) => {
@@ -71,29 +63,18 @@ const Users = () => {
     console.log(deleteUsers);
     setUsers(deleteUsers);
   };
-  // callback function deleteUser gets sent to DeleteUser file
-  //delete function takes id as a parameter
-  // const deleteUser = async (deleteId) => {
-  //   let response = await fetch(`http://localhost:4000/users/${deleteUser}`, {
-  //     method: "DELETE",
-  //   });
-  //   await response.json();
-  //   // functionality to delete below
-  //   //iterate thru users, if the id does not match the specific id
-  //   const newUser = users.filter((user) => user.id !== deleteId);
-  //   console.log(deleteUser);
-  //   setUsers(newUser);
-  // };
 
   return (
     <section className="user-management">
-      <h2>User Management</h2>
+      <h2>
+        <Header text="User Management" />
+      </h2>
       <div className="container">
         <ul id="users-list">
           <table className="table table-striped">
             <thead>
               <tr>
-                <th scope="col">#:</th>
+                <th scope="col">#UserID:</th>
                 <th scope="col">Name:</th>
                 <th scope="col">Email:</th>
                 <th scope="col"></th>
@@ -106,6 +87,7 @@ const Users = () => {
                     <th scope="row">{user.id}</th>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
+                    <td></td>
                     <td>
                       <MdDelete onClick={() => handleDeleteUser(user.id)} />
 
@@ -116,41 +98,25 @@ const Users = () => {
               })}
             </tbody>
           </table>
-          {/* display all existing Users here 
-        to access the data you need to do a dot notation */}
-          {/* {users.map((users, index) => {
-          return (
-            <li key={index}>
-              Name: {users.name}, Email: {users.email}, ID: {users.id}
-            </li>
-          );
-        })} */}
         </ul>
 
         <div>
           <h3>Add User</h3>
-          <form id="add-user" onSubmit={handleAddUser} action="POST">
+          <form id="add-user" onSubmit={handleAddUser} action="#">
             <fieldset>
-              <label>ID:</label>
-              <input
-                type="text"
-                id="add-user-id"
-                value={id}
-                onChange={set("id")}
-              />
               <label>Name: </label>
               <input
                 type="text"
                 id="add-user-name"
                 value={name} // changes the name
-                onChange={set("name")} //handle the change function
+                onChange={(e) => setName(e.target.value)} //handle the change function
               />
               <label>Email: </label>
               <input
                 type="text"
                 id="add-user-email"
                 value={email}
-                onChange={set("email")}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </fieldset>
             {/* Add more form fields here */}
@@ -158,7 +124,6 @@ const Users = () => {
           </form>
         </div>
       </div>
-      {/* <DeleteUser deleteUser={deleteUser} /> */}
     </section>
   );
 };

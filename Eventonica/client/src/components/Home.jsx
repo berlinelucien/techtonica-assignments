@@ -3,8 +3,8 @@ import Header from './Header';
 import Footer from './Footer'
 const Home = () => {
   return (
-      <div>
-          <Header />
+      <div className='homePage'>
+      <Header text="Eventonica"/>
           <Footer />
     </div>
   )

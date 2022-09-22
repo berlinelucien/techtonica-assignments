@@ -56,7 +56,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
           <input
             type="text"
             id="add-event-id"
-            value={state.id || ""}
+            value={state.id}
             onChange={(e) =>
               dispatch({
                 type: "editId",
@@ -70,7 +70,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
           <input
             type="text"
             id="add-event-name"
-            value={state.name || ""}
+            value={state.name}
             onChange={(e) =>
               dispatch({
                 type: "editName",
@@ -82,9 +82,9 @@ const [state, dispatch] = useReducer(reducer, initialState);
           />
 
           <input
-            type="date"
+            type="text"
             id="add-event-date"
-            value={state.date || ""}
+            value={state.date}
             onChange={(e) =>
               dispatch({
                 type: "editDate",
@@ -98,7 +98,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
           <input
             type="text"
             id="add-event-category"
-            value={state.category || ""}
+            value={state.category }
             onChange={(e) =>
               dispatch({
                 type: "editCategory",
@@ -112,7 +112,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
           <input
             type="text"
             id="add-event-description"
-            value={state.description || ""}
+            value={state.description}
             onChange={(e) =>
               dispatch({
                 type: "editDescription",

@@ -1,10 +1,10 @@
 import React from 'react'
 import calendar from '../images/calendar.png' 
-const Header = () => {
+const Header = (props) => {
   return (
     <header>
     <img src={calendar} alt="Calendar Star Logo" />
-    <h1>Eventonica</h1>
+      <h1>{ props.text }</h1>
   </header>
 
   )
