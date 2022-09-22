@@ -3,8 +3,13 @@ import Header from "./Header";
 import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 import SearchIcon from "@mui/icons-material/Search";
 
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 const Users = () => {
   //stores the harcode data
   //const [users, setUsers] = useState([marlin, nemo, dory]);
@@ -113,6 +118,7 @@ const Users = () => {
         </label>
       </div>
       <div className="container">
+      <h3>All Users</h3>
         <div className="userList">
           <ul id="users-list">
             <table className="table table-hover border">
@@ -134,7 +140,10 @@ const Users = () => {
             
                       <td>
                         <MdDelete onClick={() => handleDeleteUser(user.id)} />
-
+                        <Checkbox {...label}
+                          color="secondary"
+                          icon={<FavoriteBorder />}
+                          checkedIcon={<Favorite />} />
                         <FaRegEdit />
                       </td>
                     </tr>

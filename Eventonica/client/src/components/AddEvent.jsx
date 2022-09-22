@@ -41,7 +41,7 @@ function AddNewEvent({ handleAddEvent }) {
 const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div>
+    <div className="addEventContainer">
       <h3>Add Event</h3>
       <form
         id="add-event"
@@ -53,7 +53,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
       >
         <fieldset>
           <label>Event info: </label>
-          <input
+          <input 
             type="text"
             id="add-event-id"
             value={state.id}
@@ -82,7 +82,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
           />
 
           <input
-            type="text"
+            type="date"
             id="add-event-date"
             value={state.date}
             onChange={(e) =>
@@ -124,7 +124,10 @@ const [state, dispatch] = useReducer(reducer, initialState);
           />
         </fieldset>
         {/* Add more form fields here */}
-        <button>Add Event</button>
+        <div className="button">
+        <input type="submit" value="Add Event" />
+        </div>
+       
       </form>
     </div>
   );

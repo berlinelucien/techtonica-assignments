@@ -1,5 +1,4 @@
 
-
 fieldset {
   border: none;
   margin: 1rem 0;
@@ -49,4 +48,31 @@ padding: 30%;
 .addUserArea{
   margin-top: 5% ;
   margin-left: 5%;
+  padding: 0.25rem;
+  padding-left: 1rem;
+  background: #F1F5F8;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-color: transparent;
+  font-size: 1rem;
+  flex: 1 0 auto;
+  color: black;
+  width: 95%
+ 
 }
+
+.addEventContainer{
+  padding: 0.25rem;
+  padding-left: 1rem;
+  background: #F1F5F8;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-color: transparent;
+  font-size: 1rem;
+  flex: 1 0 auto;
+  color: black;
+  width: 95%
+}
+
+
+

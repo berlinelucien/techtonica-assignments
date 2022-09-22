@@ -8,19 +8,23 @@ import { MdDelete } from "react-icons/md";
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-
+import SearchIcon from "@mui/icons-material/Search";
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const EventForm = () => {
   // setting the data
   const [events, setEvents] = useState([])
-  // const [id, setId] = useState("");
-  // const [name, setName] = useState("");
-  // const [date, setDate] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [category, setCategory] = useState("");
   console.log("events", events);
+
+   //     set search query to empty string
+   const [q, setQ] = useState("");
+   //     set search parameters
+   //     we only what to search countries by capital and name
+   //     this list can be longer if you want
+   //     you can search countries even by their population
+   // just add it to this array
+   const [searchParam] = useState(["id", "name"]);
 
   //const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   // connect backend to frontend
@@ -36,24 +40,44 @@ const EventForm = () => {
   }, []);
   
   // add events
-  const handleAddEvent = (newEvents) => {
-    //const newEvent = { id, name, date, description, category };
-    setEvents([...events, newEvents]);
-    // setId("");
-    // setName("");
-    // setDate("");
-    // setDescription("");
-    // setCategory("");
+  const handleAddEvent = async (newEvents) => {
+    const response = await fetch('http://localhost:4000/events', {
+      method: 'POST',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newEvents)
+  });
+    const content = await response.json();
+    setEvents(events);
+    setEvents([...events, content]);
+    // const response = await fetch('http://localhost:4000/events');
+    //     const events = await response.json();
+    //     setEvents(events);
+    // setEvents([...events, newEvents]);
   };
-
   // delete events prop/function from delete event page
-  const deleteEvent =  (deleteId) => {
-    // let response = await fetch(`http://localhost:4000/events/${deleteId}`, {
-    //   method: "DELETE",
-    // });
-    // await response.json();
+  const deleteEvent = async (deleteId) => {
+    let response = await fetch(`http://localhost:4000/events/${deleteId}`, {
+      method: "DELETE",
+    });
+    await response.json();
     const newEvents = events.filter((event) => event.id !== deleteId);
     setEvents(newEvents);
+  };
+
+  // search events
+  // input will be converted to string, toLowercase, only looking
+  // for parameters q= name
+  const searchItem = (events) => {
+    return events.filter((event) => {
+      return searchParam.some((newEvent) => {
+        return (
+          event[newEvent].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+        );
+      });
+    });
   };
 
   return (
@@ -63,10 +87,32 @@ const EventForm = () => {
           <Header text="Event Management" />{" "}
         </h2>
         <div>
+         
+          <div className="search">
+        <label htmlFor="search-form">
+          <input
+            type="search"
+            name="search-form"
+            id="search-form"
+            className="search-input"
+            placeholder="Search for event"
+            value={q}
+            /*
+          // set the value of our useState q
+          //  anytime the user types in the search box
+          */
+            onChange={(e) => setQ(e.target.value)}
+          />
+          <span className="searchIcon">
+            <SearchIcon />
+          </span>
+        </label>
+          </div>
+          <div className="container">
           <h3>All Events</h3>
           <ul id="events-list">
-            <table className="table table-striped">
-              <thead>
+            <table className="table table-hover border">
+              <thead className="thead-dark">
                 <tr>
                   <th scope="col">#:</th>
                   <th scope="col">Event:</th>
@@ -74,12 +120,11 @@ const EventForm = () => {
                   <th scope="col">Description:</th>
                   <th scope="col">Category:</th>
                   <th scope="col"></th>
-          
                 </tr>
               </thead>
               <tbody>
                 {/* Display all Events here */}
-                {events.map((event, index) => {
+                {searchItem(events).map((event, index) => {
                   return (
                     <tr key={index}>
                       <th scope="row">{event?.id}</th>
@@ -99,16 +144,20 @@ const EventForm = () => {
                 })}
               </tbody>
             </table>
-          </ul>
+            </ul>
+            </div>
           {/** add event form */}
+          <div className="addUserArea">
           <AddNewEvent handleAddEvent={handleAddEvent} />
+          </div>
+          
         </div>
       </section>
 
       <div>
         {/** delete event component */}
         {/* <DeleteEvent deleteEvent={deleteEvent} /> */}
-        <FindEvent />
+        {/* <FindEvent /> */}
       </div>
     </div>
   );
