@@ -4,7 +4,7 @@ import Nav from './components/Nav';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Users from "./components/Users";
 import Home from "./components/Home";
-import Event from "./components/Event";
+import EventForm from "./components/EventForm";
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/events" element={<Event />} />
+          <Route path="/events" element={<EventForm />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -33,3 +33,18 @@ footer {
 .homePage{
 padding: 30%;
 }
+
+.search {
+  margin-left: 60%;
+  margin-top: 5%
+}
+
+.usersList{
+  margin-top: 5%;
+
+}
+
+.addUserArea{
+  margin-top: 5% ;
+  margin-left: 5%;
+}

@@ -3,6 +3,7 @@ import Header from "./Header";
 import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Users = () => {
   //stores the harcode data
@@ -12,9 +13,20 @@ const Users = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
- 
-
   console.log("users", users);
+  //     set search query to empty string
+  const [q, setQ] = useState("");
+  //     set search parameters
+  //     we only what to search countries by capital and name
+  //     this list can be longer if you want
+  //     you can search countries even by their population
+  // just add it to this array
+  const [searchParam] = useState(["id", "name"]);
+
+  useEffect(() => {
+    // our fetch codes
+  }, []);
+
   // connect backend to frontend
   // You can change getUsers() code from promises to async/await so that asynchronous code is readable and appears to be executing synchronously
   /** GET LIST OF USER */
@@ -48,8 +60,6 @@ const Users = () => {
     setName("");
     setEmail("");
   };
- 
-
 
   /** DELETE USER */
   const handleDeleteUser = async (deleteUser) => {
@@ -63,65 +73,102 @@ const Users = () => {
     console.log(deleteUsers);
     setUsers(deleteUsers);
   };
+  // search users
+  // input will be converted to string, toLowercase, only looking
+  // for parameters q= name
+  const searchItem = (users) => {
+    return users.filter((user) => {
+      return searchParam.some((newUser) => {
+        return (
+          user[newUser].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+        );
+      });
+    });
+  };
 
   return (
     <section className="user-management">
       <h2>
         <Header text="User Management" />
       </h2>
+
+      <div className="search">
+        <label htmlFor="search-form">
+          <input
+            type="search"
+            name="search-form"
+            id="search-form"
+            className="search-input"
+            placeholder="Search for user"
+            value={q}
+            /*
+          // set the value of our useState q
+          //  anytime the user types in the search box
+          */
+            onChange={(e) => setQ(e.target.value)}
+          />
+          <span className="searchIcon">
+            <SearchIcon />
+          </span>
+        </label>
+      </div>
       <div className="container">
-        <ul id="users-list">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#UserID:</th>
-                <th scope="col">Name:</th>
-                <th scope="col">Email:</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => {
-                return (
-                  <tr key={index}>
-                    <th scope="row">{user.id}</th>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td></td>
-                    <td>
-                      <MdDelete onClick={() => handleDeleteUser(user.id)} />
+        <div className="usersList">
+          <ul id="users-list">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#UserID:</th>
+                  <th scope="col">Name:</th>
+                  <th scope="col">Email:</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {searchItem(users).map((user, index) => {
+                  return (
+                    <tr key={index}>
+                      <th scope="row">{user.id}</th>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td></td>
+                      <td>
+                        <MdDelete onClick={() => handleDeleteUser(user.id)} />
 
-                      <FaRegEdit />
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </ul>
-
+                        <FaRegEdit />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </ul>
+        </div>
         <div>
-          <h3>Add User</h3>
-          <form id="add-user" onSubmit={handleAddUser} action="#">
-            <fieldset>
-              <label>Name: </label>
-              <input
-                type="text"
-                id="add-user-name"
-                value={name} // changes the name
-                onChange={(e) => setName(e.target.value)} //handle the change function
-              />
-              <label>Email: </label>
-              <input
-                type="text"
-                id="add-user-email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </fieldset>
-            {/* Add more form fields here */}
-            <input type="submit" value="Add" />
-          </form>
+          <div className="addUserArea">
+            <h3>Add User</h3>
+            <form id="add-user" onSubmit={handleAddUser} action="#">
+              <fieldset>
+                <label>Name: </label>
+                <input
+                  type="text"
+                  id="add-user-name"
+                  value={name} // changes the name
+                  onChange={(e) => setName(e.target.value)} //handle the change function
+                />
+                <label>Email: </label>
+                <input
+                  type="text"
+                  id="add-user-email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </fieldset>
+              {/* Add more form fields here */}
+
+              <input type="submit" value="Add" />
+            </form>
+          </div>
         </div>
       </div>
     </section>

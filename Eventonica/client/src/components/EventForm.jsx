@@ -1,40 +1,52 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import AddNewEvent from "./AddEvent";
-import DeleteEvent from "./DeleteEvent";
+//import DeleteEvent from "./DeleteEvent";
 import FindEvent from "./FindEvent";
 import Header from "./Header";
 import { MdDelete } from "react-icons/md";
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
-const Event = () => {
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+const EventForm = () => {
   // setting the data
-  const [events, setEvents] = useState([]);
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [events, setEvents] = useState([])
+  // const [id, setId] = useState("");
+  // const [name, setName] = useState("");
+  // const [date, setDate] = useState("");
+  // const [description, setDescription] = useState("");
+  // const [category, setCategory] = useState("");
   console.log("events", events);
 
+  //const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   // connect backend to frontend
   // fetch all events
-  const getEvents = async () => {
+  const getEvents = () => {
     fetch("http://localhost:4000/events")
       .then((res) => res.json())
-      .then((res) => setEvents(res.events));
+      .then((res) => setEvents(events));
   };
   useEffect(() => {
-    // useEffect will run getEvents()
+    // useEffect will run getEvents() 
     getEvents();
   }, []);
-
+  
   // add events
   const handleAddEvent = (newEvents) => {
+    //const newEvent = { id, name, date, description, category };
     setEvents([...events, newEvents]);
+    // setId("");
+    // setName("");
+    // setDate("");
+    // setDescription("");
+    // setCategory("");
   };
 
   // delete events prop/function from delete event page
-  const deleteEvent = async (deleteId) => {
+  const deleteEvent =  (deleteId) => {
     // let response = await fetch(`http://localhost:4000/events/${deleteId}`, {
     //   method: "DELETE",
     // });
@@ -61,6 +73,7 @@ const Event = () => {
                   <th scope="col">Description:</th>
                   <th scope="col">Category:</th>
                   <th scope="col"></th>
+          
                 </tr>
               </thead>
               <tbody>
@@ -75,6 +88,7 @@ const Event = () => {
                       <td>{event.category}</td>
                       <td>
                         <MdDelete onClick={() => deleteEvent(event.id)} />
+                        <Checkbox {...label} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                       </td>
                     </tr>
                   );
@@ -89,11 +103,11 @@ const Event = () => {
 
       <div>
         {/** delete event component */}
-        <DeleteEvent deleteEvent={deleteEvent} />
+        {/* <DeleteEvent deleteEvent={deleteEvent} /> */}
         <FindEvent />
       </div>
     </div>
   );
 };
 
-export default Event;
+export default EventForm;
