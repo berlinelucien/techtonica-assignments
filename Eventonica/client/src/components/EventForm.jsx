@@ -16,7 +16,6 @@ const EventForm = () => {
   // setting the data
   const [events, setEvents] = useState([]);
   console.log("events", events);
- 
 
   //     set search query to empty string
   const [q, setQ] = useState("");
@@ -54,7 +53,6 @@ const EventForm = () => {
     const content = await response.json();
     setEvents(events);
     setEvents([...events, content]);
-   
   };
   //DELETE
   // delete events prop/function from delete event page
