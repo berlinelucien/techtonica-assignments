@@ -16,6 +16,7 @@ const EventForm = () => {
   // setting the data
   const [events, setEvents] = useState([]);
   console.log("events", events);
+ 
 
   //     set search query to empty string
   const [q, setQ] = useState("");
@@ -53,10 +54,7 @@ const EventForm = () => {
     const content = await response.json();
     setEvents(events);
     setEvents([...events, content]);
-    // const response = await fetch('http://localhost:4000/events');
-    //     const events = await response.json();
-    //     setEvents(events);
-    // setEvents([...events, newEvents]);
+   
   };
   //DELETE
   // delete events prop/function from delete event page

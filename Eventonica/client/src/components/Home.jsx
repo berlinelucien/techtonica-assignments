@@ -7,7 +7,7 @@ const Home = () => {
       <div className='homePage'>
       <Header text="Eventonica" />
      
-    <div className='container'>
+    <div className='container-home'>
       <img src={calendarDoodle} alt="illustration calendar" />
         
       </div>

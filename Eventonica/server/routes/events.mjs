@@ -41,7 +41,30 @@ router.post('/', async (req, res) => {
         console.log(e);
       return res.status(400).json({ e });
     }
-  })
+})
+  
+router.put('/:id', async (req, res) => {
+  const event = {
+    id: req.body.id,
+    name: req.body.name,
+    description: req.body.description,
+    category: req.body.category,
+    date: req.body.date,
+  };
+  try {
+    const updateEvents = await db.many("UPDATE events SET name=$2, date=$3, description=$4, category=$5 WHERE id=$1", [
+      event.name,
+      event.date,
+      event.description,
+      event.category,
+      event.id,
+    ]);
+    console.log(updateEvents);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({ e });
+  }
+})
   
 /* delete request goes here  */
 /* Delete events listing. */
@@ -57,30 +80,30 @@ router.post('/', async (req, res) => {
   }
 });
 // hardcode data
-let mockEvents = [
-  {
-    id: "1",
-    name: "Birthday",
-    date: "2021-09-01",
-    description: "A birthday party for my best friend",
-    category: "Celebration",
-  },
-  {
-    id: "2",
-    name: "Graduation",
-    date: "2021-08-01",
-    description: "The class of 2021 graduates from East High",
-    category: "Education",
-  },
-  {
-    id: "3",
-    name: "JS Study Session",
-    date: "2021-10-01",
-    description: "A chance to practice Javascript interview questions",
-    category: "Education",
-  }
+// let mockEvents = [
+//   {
+//     id: "1",
+//     name: "Birthday",
+//     date: "2021-09-01",
+//     description: "A birthday party for my best friend",
+//     category: "Celebration",
+//   },
+//   {
+//     id: "2",
+//     name: "Graduation",
+//     date: "2021-08-01",
+//     description: "The class of 2021 graduates from East High",
+//     category: "Education",
+//   },
+//   {
+//     id: "3",
+//     name: "JS Study Session",
+//     date: "2021-10-01",
+//     description: "A chance to practice Javascript interview questions",
+//     category: "Education",
+//   }
 
-]
+// ]
 
 
 
