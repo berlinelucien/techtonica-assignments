@@ -4,15 +4,14 @@ import { useReducer } from "react";
 // Reducer A function that accepts the current state and action. It returns the new state.
 
 function AddNewEvent({ handleAddEvent }) {
-     // Create an initial state for the form reducer. This will be an object with keys for each field in the form. The values will be updates as the user fills out the form.
+  // Create an initial state for the form reducer. This will be an object with keys for each field in the form. The values will be updates as the user fills out the form.
   const initialState = {
     id: "",
     name: "",
     date: "",
     description: "",
-    category: ""
+    category: "",
   };
-
 
   const reducer = (state, action) => {
     console.log(action, "this is the action");
@@ -32,16 +31,19 @@ function AddNewEvent({ handleAddEvent }) {
 
       case "editId":
         return { ...state, id: action.payload };
-
+      
+      case "clearForm":
+        return {...state, id: "", name: "", date: "", description: "", category: "" };
+      
       default:
-        return state;
+        return state
     }
   };
-// initialize at the end of reducer that will store and update the form data
-const [state, dispatch] = useReducer(reducer, initialState);
+  // initialize at the end of reducer that will store and update the form data
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div>
+    <div className="addEventContainer">
       <h3>Add Event</h3>
       <form
         id="add-event"
@@ -59,8 +61,8 @@ const [state, dispatch] = useReducer(reducer, initialState);
             value={state.id || ""}
             onChange={(e) =>
               dispatch({
-                type: "editId",
-                payload: e.target.value
+                type: "editId" ,
+                payload: e.target.value,
               })
             }
             placeholder="Id"
@@ -73,8 +75,8 @@ const [state, dispatch] = useReducer(reducer, initialState);
             value={state.name || ""}
             onChange={(e) =>
               dispatch({
-                type: "editName",
-                payload: e.target.value
+                type: "editName" ,
+                payload: e.target.value,
               })
             }
             placeholder="Event Name"
@@ -87,8 +89,8 @@ const [state, dispatch] = useReducer(reducer, initialState);
             value={state.date || ""}
             onChange={(e) =>
               dispatch({
-                type: "editDate",
-                payload: e.target.value
+                type: "editDate" ,
+                payload: e.target.value,
               })
             }
             placeholder="Date"
@@ -101,8 +103,8 @@ const [state, dispatch] = useReducer(reducer, initialState);
             value={state.category || ""}
             onChange={(e) =>
               dispatch({
-                type: "editCategory",
-                payload: e.target.value
+                type: "editCategory" ,
+                payload: e.target.value,
               })
             }
             placeholder="Category"
@@ -116,7 +118,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
             onChange={(e) =>
               dispatch({
                 type: "editDescription",
-                payload: e.target.value
+                payload: e.target.value,
               })
             }
             placeholder="Description"
@@ -124,7 +126,9 @@ const [state, dispatch] = useReducer(reducer, initialState);
           />
         </fieldset>
         {/* Add more form fields here */}
-        <button>Add Event</button>
+        <div className="button">
+          <input type="submit" value="Add Event" />
+        </div>
       </form>
     </div>
   );
